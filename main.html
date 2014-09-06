@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Geeky eye tracker</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+</head>
+
+<body>
+
+<div>
+    <span>Polling interval (milliseconds): </span><input id="polling_interval" type="text" name="polling_interval" value="500"/>
+    <button id="btn_connect" title="Connect" class="sl-button">Connect</button>
+    <button id="btn_stop" title="Connect" class="sl-button disabled" disabled="disabled">Stop</button>
+</div>
+
+<div>
+    <input id="chk_log" type="checkbox" checked="checked"/>
+    <span id="lbl_log">Show log</span>
+    <input id="chk_debug" type="checkbox" checked="checked"/>
+    <span id="lbl_debug">Show debug</span>
+</div>
+
+<div id="result_container" style="padding-top: 20px;">
+    <span><strong>Image</strong></span>
+    <div id="result" style="padding-top: 10px;">
+        <div id="error_area" style="padding: 0; margin: 0;"></div>
+        <div id="image_area" style="padding: 0; margin: 0;">
+            <img id="image_element" alt="Please connect to enable Sonic-logic..." src=""/>
+        </div>
+    </div>
+</div>
+
+<div id="log_container" style="padding-top: 20px;">
+    <div style="padding-top: 1em;">
+        <span><strong>Log</strong></span>
+    </div>
+    <div style="height: 200px; border: 1px solid black; overflow: scroll;">
+        <div id="log_area"></div>
+    </div>
+</div>
+
+<div id="debug_container">
+    <div style="padding-top: 1em;">
+        <span><strong>Debug</strong></span>
+    </div>
+    <div style="height: 100px; border: 1px solid black;">
+        <div id="debug_area"></div>
+    </div>
+</div>
+
+<div style="padding-bottom: 1em;">
+    <h1>Developer Reference</h1>
+
+    The following endpoints are available:
+    <ul>
+        <li><strong>GET /api/events</strong> - Poll for events, response is JSON</li>
+        <li><strong>POST /api/image</strong> - Update image (send binary body)</li>
+    </ul>
+</div>
+
+</body>
+</html>

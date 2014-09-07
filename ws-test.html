@@ -1,0 +1,29 @@
+<html>
+<body>
+<h1>Simple Page</h1>
+<button id="btn_setpic" name="btn_setpic">Send picture</button>
+<div id="log"></div>
+<script type="text/javascript" src="socket.io-1.1.0.js"></script>
+<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+<script>
+    var socket = io('http://localhost:8889');
+    socket.on('connect', function () {
+        socket.emit('type', 'soniclogic');
+        socket.on('click', function (location) {
+            var msg = "Received click at: " + location.x + "," + location.y;
+            console.log(msg);
+            $('#log').append('<div>' + new Date().toLocaleString() + ' - ' + msg + '</div>');
+        });
+        socket.on('disconnect', function () {
+            console.log('Server disconnected!');
+        });
+    });
+
+    $('document').ready(function () {
+        $('#btn_setpic').click(function () {
+            socket.emit('image', "R0lGODlhEgANAOMKAAAAABUVFRoaGisrKzk5OUxMTGRkZLS0tM/Pz9/f3////////////////////////yH5BAEKAA8ALAAAAAASAA0AAART8Ml5Arg3nMkluQIhXMRUYNiwSceAnYAwAkOCGISBJC4mSKMDwpJBHFC/h+xhQAEMSuSo9EFRnSCmEzrDComAgBGbsuF0PHJq9WipnYJB9/UmFyIAOw==");
+        });
+    });
+</script>
+</body>
+</html>

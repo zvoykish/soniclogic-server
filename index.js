@@ -5,13 +5,15 @@
 var server = require("./server");
 var router = require("./router");
 var requestHandlers = require("./requestHandlers");
+var webSocketHandlers = require("./webSocketHandlers");
 
 var handle = {};
 handle["/"] = {"GET": requestHandlers.main};
-handle["/api/events"] = {"GET": requestHandlers.getEvents, "POST": requestHandlers.addEvent};
-handle["/api/image"] = {"GET": requestHandlers.getImage, "POST": requestHandlers.setImage};
-handle["/api/image/base64"] = {"GET": requestHandlers.getImageBase64};
-handle["/api/imageTimestamp"] = {"GET": requestHandlers.lastImageUpdate};
+handle["/test"] = {"GET": requestHandlers.test};
 handle["static"] = requestHandlers.getStatic;
 
-server.start(router.route, handle);
+var webSocketHandle = {};
+webSocketHandle["soniclogic"] = webSocketHandlers.sonicLogic;
+webSocketHandle["browser"] = webSocketHandlers.browser;
+
+server.start(router.route, handle, webSocketHandle);

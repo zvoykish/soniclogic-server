@@ -1,5 +1,9 @@
 * {
-    font-family: "Verdana", Times, serif;
+    /*font-family: "Verdana", Times, serif;*/
+    font-family: tahoma;
+    font-size: 14px;
+    /*padding: 0px;*/
+    /*margin: 0px;*/
 }
 
 .sl-button {

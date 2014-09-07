@@ -22,7 +22,7 @@ function loadImage() {
 loadImage();
 
 function main(response) {
-    fs.createReadStream("main.html").pipe(response);
+    fs.createReadStream("main-ws.html").pipe(response);
 }
 
 function getStatic(response, path) {
@@ -30,7 +30,7 @@ function getStatic(response, path) {
         if (exists) {
             fs.createReadStream(path).pipe(response);
         } else {
-            console.log("No request handler found for " + method + " " + pathname);
+            console.log("No request handler found for " + path);
             response.writeHead(404, {"Content-Type": "text/plain"});
             response.write("404 Not found");
             response.end();
@@ -92,6 +92,12 @@ function addEvent(response, request) {
         response.end();
     });
 }
+
+function test(response) {
+    fs.createReadStream("ws-test.html").pipe(response);
+}
+
+exports.test = test;
 
 exports.main = main;
 exports.getStatic = getStatic;
